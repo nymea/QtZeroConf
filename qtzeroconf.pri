@@ -65,14 +65,13 @@ ubports: {
 	HEADERS+= $$PWD/qzeroconf.h $$PWD/avahi-qt/qt-watch.h  $$PWD/avahi-qt/qt-watch_p.h
         SOURCES+= $$PWD/avahicore.cpp $$PWD/avahi-qt/qt-watch.cpp
 	# avahi-common
-        android: {
-            DEFINES+= HAVE_STRLCPY GETTEXT_PACKAGE
-        }
-        ubports: {
-            DEFINES += _GNU_SOURCE
-            DEFINES+= GETTEXT_PACKAGE
-        }
-        SOURCES+= $$ACM/address.c
+	android: {
+		DEFINES+= HAVE_STRLCPY GETTEXT_PACKAGE
+	}
+	ubports: {
+		DEFINES+= _GNU_SOURCE GETTEXT_PACKAGE
+	}
+	SOURCES+= $$ACM/address.c
 	SOURCES+= $$ACM/alternative.c
 	SOURCES+= $$ACM/domain.c
 	SOURCES+= $$ACM/error.c
