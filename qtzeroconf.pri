@@ -122,11 +122,10 @@ ubports: {
 }
 
 android: {
-    QT += androidextras
-    HEADERS += $$PWD/qzeroconf.h
-    SOURCES += $$PWD/androidjni.cpp
-    DISTFILES += \
-    $$PWD/android/qtzeroconf/QZeroConfNsdManager.java
+	QT += androidextras
+	HEADERS += $$PWD/qzeroconf.h $$PWD/androidnsd_p.h
+	SOURCES += $$PWD/androidnsd.cpp
+	DISTFILES += $$PWD/android/qtzeroconf/QZeroConfNsdManager.java
 }
 
 HEADERS+= $$PWD/qzeroconfservice.h $$PWD/qzeroconfglobal.h
