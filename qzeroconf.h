@@ -68,6 +68,7 @@ public:
 
 Q_SIGNALS:
 	void servicePublished(void);
+	void serviceNameChanged(const QString &newName);
 	void error(QZeroConf::error_t);
 	void serviceAdded(QZeroConfService);
 	void serviceUpdated(QZeroConfService);
