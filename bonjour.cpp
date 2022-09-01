@@ -192,8 +192,10 @@ void DNSSD_API QZeroConfPrivate::resolverCallback(DNSServiceRef, DNSServiceFlags
 			resolver->cleanUp();
 		}
 		else {
-			resolver->addressNotifier = new QSocketNotifier(sockfd, QSocketNotifier::Read);
-			connect(resolver->addressNotifier, &QSocketNotifier::activated, resolver, &Resolver::addressReady);
+			// Fix "multiple socket notifiers for same socket" warning
+			resolver->addressNotifier.clear();
+			resolver->addressNotifier = QSharedPointer<QSocketNotifier>::create(sockfd, QSocketNotifier::Read);
+			connect(resolver->addressNotifier.data(), &QSocketNotifier::activated, resolver, &Resolver::addressReady);
 		}
 	}
 	else {
