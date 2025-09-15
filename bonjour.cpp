@@ -240,16 +240,12 @@ void QZeroConfPrivate::cleanUp(DNSServiceRef toClean)
 		return;
 	else if (toClean == browser) {
 		browser = nullptr;
-		if (browserSocket) {
-			delete browserSocket;
-			browserSocket = nullptr;
-		}
-		QMap<QString, QZeroConfService >::iterator i;
-		for (i = pub->services.begin(); i != pub->services.end(); i++) {
-			QString key = (*i)->name() + QString::number((*i)->interfaceIndex());
-			resolvers[key]->cleanUp();
-			emit pub->serviceRemoved(*i);
-		}
+		browserNotifier.clear();
+		for (auto resolver : resolvers)
+			resolver->cleanUp();
+		resolvers.clear();
+		for (auto service : pub->services)
+			emit pub->serviceRemoved(service);
 		pub->services.clear();
 	}
 	else if (toClean == dnssRef) {
