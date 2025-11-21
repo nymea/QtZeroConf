@@ -29,6 +29,7 @@
 
 #include <dns_sd.h>
 #include <QSocketNotifier>
+#include <QScopedPointer>
 #include <QtEndian>
 #include <QHostAddress>
 #include "qzeroconf.h"
@@ -47,8 +48,8 @@ public:
 	QZeroConfPrivate *ref = nullptr;
 	DNSServiceRef DNSresolverRef = nullptr;
 	DNSServiceRef DNSaddressRef = nullptr;
-	QSharedPointer <QSocketNotifier> resolverNotifier;
-	QSharedPointer <QSocketNotifier> addressNotifier;
+	QScopedPointer<QSocketNotifier> resolverNotifier;
+	QScopedPointer<QSocketNotifier> addressNotifier;
 
 public slots:
 	void resolverReady();
@@ -80,8 +81,8 @@ public:
 	DNSServiceRef dnssRef = nullptr;
 	DNSServiceRef browser = nullptr;
 	DNSServiceProtocol protocol;
-	QSharedPointer<QSocketNotifier> serviceNotifier;
-	QSharedPointer<QSocketNotifier> browserNotifier;
+	QScopedPointer<QSocketNotifier> serviceNotifier;
+	QScopedPointer<QSocketNotifier> browserNotifier;
 	QByteArray txt;
 	QHash<QString, Resolver*> resolvers;
 
