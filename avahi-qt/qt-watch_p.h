@@ -26,7 +26,7 @@
 #include <QSocketNotifier>
 #include <avahi-common/watch.h>
 
-class AvahiWatch : public QObject
+struct AvahiWatch : public QObject
 {
     Q_OBJECT
 public:
@@ -50,7 +50,7 @@ private:
     bool m_incallback;
 };
 
-class AvahiTimeout : public QObject
+struct AvahiTimeout : public QObject
 {
     Q_OBJECT
 
