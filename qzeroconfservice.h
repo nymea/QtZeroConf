@@ -1,6 +1,8 @@
 #ifndef QZEROCONFSERVICE_H
 #define QZEROCONFSERVICE_H
 
+#include <QMap>
+#include <QMutex>
 #include <QHostAddress>
 #include <QMutexLocker>
 #include <QSharedPointer>
